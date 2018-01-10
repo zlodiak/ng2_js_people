@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~vars.scss";
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.panel{
+  height: 60px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $basic-measure;
+
+  .menu{
+
+  }
+
+  .auth{
+
+    .no-auth{
+
+    }
+
+    .is-auth{
+
+    }
+  }
+}
+
+agm-map {
+  height: calc(100vh - 60px);
+}
