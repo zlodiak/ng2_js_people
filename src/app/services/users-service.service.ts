@@ -17,12 +17,13 @@ export class UsersService {
     return this.httpClient.post(Config.host + 'users', user);
   }
 
-  /*getUserById(id: string): Observable<any> | any {
-    return this.httpClient.get(Config.host + `users?id=${id}`).map((users: User[]) => {
+  getUserByEmail(email: string): Observable<any> | any {
+    return this.httpClient.get(Config.host + `users?email=${email}`).map((users: User[]) => {
       return users[0] ? users[0] : undefined;
     });
   }
 
+  /*
   getUsers(): Observable<any> {
     return this.httpClient.get(Config.host + 'users');
   }

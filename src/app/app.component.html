@@ -1,17 +1,17 @@
 <div class="panel">
   <div class="menu">
-    <div class="link" *ngIf="authorizedUserId">
+    <div class="link" *ngIf="authorizedUser">
       Анкета
     </div>
   </div>
 
   <div class="auth">
-    <div class="no-auth" *ngIf="!authorizedUserId">
+    <div class="no-auth" *ngIf="!authorizedUser">
       <div class="link">Войти</div>
       <div class="link" (click)="clickRegistration()">Зарегистрироваться</div>
     </div>
 
-    <div class="is-auth" *ngIf="authorizedUserId">
+    <div class="is-auth" *ngIf="authorizedUser">
       is
     </div>
   </div>
