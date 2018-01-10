@@ -17,10 +17,9 @@ export class AppComponent implements OnInit {
   lat: number = 51.678418;
   lng: number = 7.809007;
 
-  private authorizedUserId: string | boolean;
+  private authorizedUserId: number | boolean;
   private authorizedUserName: string | boolean;
   private registrationDialogRef: MatDialogRef<RegistrationComponent>;
-
   private subGetAuthorizedUser: Subscription;
 
   constructor(private globalVarsService: GlobalVarsService,
@@ -31,21 +30,15 @@ export class AppComponent implements OnInit {
       (user: User) => {
         this.authorizedUserId = user ? user.id : false;
         this.authorizedUserName = user ? user.name : false;
-      },
-      err => {
-        console.log(err);
       }
     );
   }
 
   private clickRegistration(): void {
-    this.registrationDialogRef = this.dialog.open(RegistrationComponent, {
-      hasBackdrop: true,
-      data: { title: 'Ошибка!', message: 'messagee' }
-    });
-
-    this.registrationDialogRef.afterClosed().subscribe(val => {
-      console.log('returned val is :', val);
+    this.registrationDialogRef = this.dialog.open(RegistrationComponent, {});
+    this.registrationDialogRef.afterClosed().subscribe(() => {
+      console.log(3);
+      this.ngOnInit();
     });
   }
 }

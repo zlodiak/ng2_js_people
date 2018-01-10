@@ -1,10 +1,29 @@
-<h1 mat-dialog-title>{{ data.title }}</h1>
+<h2 class="h2" mat-dialog-title>Регистрация</h2>
 
-<mat-dialog-content>
-  {{ data.message }}
-</mat-dialog-content>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+      <div class="line">
+        <input class="email" id="email" placeholder="email" type="email" formControlName="email">
+      </div>
 
-<mat-dialog-actions>
-  <button mat-button>Add</button>
-  <button mat-button (click)="submit('test_val')">Cancel</button>
-</mat-dialog-actions>
+      <div class="line">
+        <input class="password" id="password" placeholder="Пароль" type="password" formControlName="password">
+      </div>
+
+      <div class="line">
+        <input class="name" id="name" placeholder="Имя" type="text" formControlName="name">
+      </div>
+
+      <div class="line">
+        <input class="checkbox" id="agree" type="checkbox" formControlName="agree">
+        <label for="agree">Согласие на обработку персональных данных</label>
+      </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="clickCancel()">Cancel</button>
+    <button class="btn btn-common" type="submit" mat-button [disabled]="form.invalid">
+      Зарегистрироваться
+    </button>
+  </mat-dialog-actions>
+</form>

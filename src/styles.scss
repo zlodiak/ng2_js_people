@@ -35,3 +35,16 @@ body{
 agm-map {
   height: calc(100vh - 60px);
 }
+
+.btn-common{
+  background: $basic-color;
+  color: #fff !important;
+
+  &.active{
+    background: $accent-color;
+  }
+
+  &:disabled{
+    background: $unactive-color;
+  }
+}

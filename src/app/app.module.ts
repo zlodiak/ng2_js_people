@@ -1,14 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-import { MatDialogModule } from '@angular/material';
+import {  MatDialogModule,
+          MatButtonModule} from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { GlobalVarsService } from './services/global-vars.service';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { HashService } from './services/hash-service.service';
+import { UsersService } from './services/users-service.service';
 
 
 @NgModule({
@@ -17,6 +22,9 @@ import { RegistrationComponent } from './components/registration/registration.co
     RegistrationComponent
   ],
   imports: [
+    HttpClientModule,
+    MatButtonModule,
+    ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -24,7 +32,11 @@ import { RegistrationComponent } from './components/registration/registration.co
       apiKey: 'AIzaSyDT2NO8RgOBPpi3Hph-sjfyE1zyRPAoMnQ'
     })
   ],
-  providers: [GlobalVarsService],
+  providers: [
+    UsersService,
+    GlobalVarsService,
+    HashService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     RegistrationComponent
