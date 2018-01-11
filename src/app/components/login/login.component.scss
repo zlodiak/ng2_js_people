@@ -1,0 +1,23 @@
+@import "~vars.scss";
+
+.line{
+  padding-bottom: $basic-measure;
+  width: 100%;
+  min-height: $basic-measure;
+  position: relative;
+
+  mat-form-field{
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .error-message{
+    color: $accent-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    font-size: 80%;
+  }
+}
+

@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  private onSubmit(): void {
+  private clickSubmit(): void {
     const newUser: User = {
       email: this.form.value.email,
       password: this.hashService.generate(this.form.value.password),
@@ -52,18 +52,14 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  private comparePasswords(control: FormControl): Promise<boolean>  {
-    console.log(this.form.value.password);
-    console.log(control.value);
+  private comparePasswords(control: FormControl): Promise<any>  {
     const password = this.form.value.password;
     const password2 = control.value;
     return new Promise((resolve, reject) => {
       if(password === password2) {
-        console.log(1);
         resolve(null);
       } else {
-        console.log(2);
-        resolve({notEqual: true});
+        resolve({comparePasswords: true});
       }
     });
   }

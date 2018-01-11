@@ -7,7 +7,7 @@
 
   <div class="auth">
     <div class="no-auth" *ngIf="!authorizedUser">
-      <div class="link">Войти</div>
+      <div class="link" (click)="clickLogin()">Войти</div>
       <div class="link" (click)="clickRegistration()">Зарегистрироваться</div>
     </div>
 

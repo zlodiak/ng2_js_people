@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { GlobalVarsService } from './services/global-vars.service';
 import { User } from './interfaces/user';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
 
   private authorizedUser: User | boolean;
   private registrationDialogRef: MatDialogRef<RegistrationComponent>;
+  private loginDialogRef: MatDialogRef<LoginComponent>;
 
   constructor(private globalVarsService: GlobalVarsService,
               private dialog: MatDialog) {}
@@ -33,7 +35,17 @@ export class AppComponent implements OnInit {
     });
   }
 
+  private clickLogin(): void {
+    this.loginDialogRef = this.dialog.open(LoginComponent, {});
+    this.loginDialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
   private logout(): void {
     console.log('logout');
   }
+
+
+
 }

@@ -11,17 +11,20 @@ import {  MatDialogModule,
 
 import { AgmCoreModule } from '@agm/core';
 
-import { AppComponent } from './app.component';
 import { GlobalVarsService } from './services/global-vars.service';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { HashService } from './services/hash-service.service';
 import { UsersService } from './services/users-service.service';
+
+import { AppComponent } from './app.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     MatCheckboxModule,
@@ -43,6 +46,7 @@ import { UsersService } from './services/users-service.service';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    LoginComponent,
     RegistrationComponent
   ]
 })

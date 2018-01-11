@@ -1,0 +1,28 @@
+<h2 class="h2" mat-dialog-title>Вход в систему</h2>
+
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <div class="line">
+      <mat-form-field class="line-inner">
+        <input class="email" id="email" placeholder="email" type="email" formControlName="email" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="line">
+      <mat-form-field class="line-inner">
+        <input class="password" id="password" placeholder="Пароль" type="password" formControlName="password" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="line">
+      <div class="error-message" *ngIf="isShowError">Неверные авторизационные данные</div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="btn btn-common" type="button" mat-button (click)="clickCancel()">Cancel</button>
+    <button class="btn btn-common" type="button" mat-button (click)="clickSubmit()" [disabled]="form.invalid">
+      Войти
+    </button>
+  </mat-dialog-actions>
+</form>
