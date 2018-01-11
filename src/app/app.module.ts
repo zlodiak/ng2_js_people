@@ -5,7 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import {  MatDialogModule,
-          MatButtonModule} from '@angular/material';
+          MatButtonModule,
+          MatInputModule,
+          MatCheckboxModule} from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -22,6 +24,8 @@ import { UsersService } from './services/users-service.service';
     RegistrationComponent
   ],
   imports: [
+    MatCheckboxModule,
+    MatInputModule,
     HttpClientModule,
     MatButtonModule,
     ReactiveFormsModule,

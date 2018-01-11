@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { GlobalVarsService } from './services/global-vars.service';
@@ -19,7 +18,6 @@ export class AppComponent implements OnInit {
 
   private authorizedUser: User | boolean;
   private registrationDialogRef: MatDialogRef<RegistrationComponent>;
-  private subGetAuthorizedUser: Subscription;
 
   constructor(private globalVarsService: GlobalVarsService,
               private dialog: MatDialog) {}
@@ -33,5 +31,9 @@ export class AppComponent implements OnInit {
     this.registrationDialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  private logout(): void {
+    console.log('logout');
   }
 }

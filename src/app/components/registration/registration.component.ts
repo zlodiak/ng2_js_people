@@ -27,7 +27,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       'email':      new FormControl('', [Validators.required, Validators.email], this.forbiddenEmail.bind(this)),
-      'password':   new FormControl('', [Validators.required, Validators.minLength(6)]),
+      'password':   new FormControl('', [Validators.required, Validators.minLength(3)]),
+      'password2':  new FormControl('', [Validators.required, Validators.minLength(3)], this.comparePasswords.bind(this)),
       'name':       new FormControl('', [Validators.required]),
       'agree':      new FormControl(false, [Validators.requiredTrue])
     });
@@ -51,15 +52,28 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  private comparePasswords(control: FormControl): Promise<boolean>  {
+    console.log(this.form.value.password);
+    console.log(control.value);
+    const password = this.form.value.password;
+    const password2 = control.value;
+    return new Promise((resolve, reject) => {
+      if(password === password2) {
+        console.log(1);
+        resolve(null);
+      } else {
+        console.log(2);
+        resolve({notEqual: true});
+      }
+    });
+  }
+
   private forbiddenEmail(control: FormControl): Promise<any> {
     return new Promise((resolve, reject) => {
       this.usersService.getUserByEmail(control.value).subscribe((user: User) => {
-        console.log(user);
         if(user) {
-          console.log(11);
           resolve({forbiddenEmail: true});
         } else {
-          console.log(22);
           resolve(null);
         }
       });

@@ -27,7 +27,18 @@ body{
     }
 
     .is-auth{
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      align-items: center;
 
+      .name{
+        margin-right: $basic-measure / 4;
+      }
+
+      .logout{
+        font-size: 80%;
+      }
     }
   }
 }

@@ -12,7 +12,8 @@
     </div>
 
     <div class="is-auth" *ngIf="authorizedUser">
-      is
+      <div class="name">{{ authorizedUser.name }}</div>
+      <div class="logout" (click)="logout()">(выйти)</div>
     </div>
   </div>
 </div>
