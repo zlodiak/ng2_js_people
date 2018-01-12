@@ -5,10 +5,10 @@
     <div class="line">
       <input type="file" class="photo" id="photo" placeholder="Фото" (change)="uploadPhoto($event)" #file>
 
-      <div class="line-inner" *ngIf="authorizedUser?.photo">
+      <div class="line-inner photo-box" *ngIf="authorizedUser?.photo">
         <img [src]="authorizedUser?.photo" alt="" class="photo">
+        <i class="delete material-icons md-48 md-colored" (click)="deletePhoto(); file.value = ''">close</i>
       </div>
-      <div class="delete" (click)="deletePhoto(); file.value = ''" *ngIf="photoBase64 || authorizedUser?.photo">Удалить</div>
     </div>
 
     <div class="line">

@@ -13,10 +13,24 @@
 
   .line-inner{
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
 
     &.long{
       max-width: 100%;
+    }
+
+    &.photo-box{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .delete{
+        margin-left: $basic-measure / 2;
+        color: $accent-color;
+        margin-top: -10px;
+        cursor: pointer;
+      }
     }
   }
 
