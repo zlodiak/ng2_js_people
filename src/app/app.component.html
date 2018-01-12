@@ -1,7 +1,18 @@
 <div class="panel">
   <div class="menu">
-    <div class="link" *ngIf="authorizedUser">
-      Анкета
+    <div class="links" *ngIf="authorizedUser">
+      <button class="btn btn-common" type="button" mat-button>
+        Анкета
+      </button>
+
+      <button class="btn btn-common" type="button" mat-button (click)="markerMode = true" *ngIf="!markerMode">
+        Включить режим установки маркера
+      </button>
+
+      <button class="btn btn-common is-marker-mode" type="button" mat-button *ngIf="markerMode">
+        Режим установки маркера включен
+      </button>
+
     </div>
   </div>
 
@@ -18,6 +29,13 @@
   </div>
 </div>
 
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  (mapClick)="setMarker($event)">
+    <agm-marker
+      *ngFor="let user of users"
+      [latitude]="user?.lat"
+      [longitude]="user?.lng">
+    </agm-marker>
 </agm-map>

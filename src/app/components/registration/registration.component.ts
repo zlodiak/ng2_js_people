@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,10 +14,11 @@ import { GlobalVarsService } from '../../services/global-vars.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
 
   private form: FormGroup;
   private subCreateUser: Subscription;
+  private subGetUser: Subscription;
 
   constructor(private dialogRef: MatDialogRef<RegistrationComponent>,
               private hashService: HashService,
@@ -32,6 +33,11 @@ export class RegistrationComponent implements OnInit {
       'name':       new FormControl('', [Validators.required]),
       'agree':      new FormControl(false, [Validators.requiredTrue])
     });
+  }
+
+  ngOnDestroy() {
+    if(this.subCreateUser) { this.subCreateUser.unsubscribe(); }
+    if(this.subGetUser) { this.subGetUser.unsubscribe(); }
   }
 
   private clickCancel() {
@@ -66,7 +72,7 @@ export class RegistrationComponent implements OnInit {
 
   private forbiddenEmail(control: FormControl): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.usersService.getUserByEmail(control.value).subscribe((user: User) => {
+      this.subGetUser = this.usersService.getUserByEmail(control.value).subscribe((user: User) => {
         if(user) {
           resolve({forbiddenEmail: true});
         } else {

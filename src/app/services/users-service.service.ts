@@ -23,13 +23,12 @@ export class UsersService {
     });
   }
 
-  /*
+  setUser(user: User): Observable<any> {
+    return this.httpClient.put(Config.host + `users/${user.id}`, user);
+  }
+
   getUsers(): Observable<any> {
     return this.httpClient.get(Config.host + 'users');
   }
-
-  setUser(id: string, user: User): Observable<any> {
-    return this.httpClient.put(Config.host + `users/${id}`, user);
-  }*/
 
 }

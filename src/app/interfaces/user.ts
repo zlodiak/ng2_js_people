@@ -7,6 +7,8 @@ export interface User {
   city?: string;
   icon?: string;
   createdDateUnix?: string;
+  lat?: number;
+  lng?: number;
 }
 
 

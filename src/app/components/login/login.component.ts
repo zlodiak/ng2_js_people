@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { UsersService } from '../../services/users-service.service';
 import { GlobalVarsService } from '../../services/global-vars.service';
@@ -13,10 +14,12 @@ import { Config } from '../../config';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   private form: FormGroup;
   private isShowError: boolean = false;
+
+  private subGetUser: Subscription;
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>,
               private globalVarsService: GlobalVarsService,
@@ -30,12 +33,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if(this.subGetUser) { this.subGetUser.unsubscribe(); }
+  }
+
   private clickCancel() {
     this.dialogRef.close();
   }
 
   private clickSubmit(): void {
-    this.usersService.getUserByEmail(this.form.value.email).subscribe((user) => {
+    this.subGetUser = this.usersService.getUserByEmail(this.form.value.email).subscribe((user) => {
       const passwordHash = this.hashService.generate(this.form.value.password);
 
       if(user && passwordHash === user.password) {
