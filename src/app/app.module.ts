@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {  MatDialogModule,
           MatButtonModule,
           MatInputModule,
-          MatCheckboxModule} from '@angular/material';
+          MatCheckboxModule,
+          MatSnackBarModule} from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -18,15 +19,20 @@ import { UsersService } from './services/users-service.service';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { ComponentsComponent } from './components/components.component';
+import { AutoTargetComponent } from './components/auto-target/auto-target.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ComponentsComponent,
+    AutoTargetComponent
   ],
   imports: [
+    MatSnackBarModule,
     MatCheckboxModule,
     MatInputModule,
     HttpClientModule,
@@ -46,6 +52,7 @@ import { LoginComponent } from './components/login/login.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    AutoTargetComponent,
     LoginComponent,
     RegistrationComponent
   ]
