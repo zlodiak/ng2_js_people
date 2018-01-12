@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       if(user && passwordHash === user.password) {
         this.globalVarsService.setVar('authorizedUser', user);
-        this.dialogRef.close();
+        this.dialogRef.close('okLogin');
       } else {
         this.isShowError = true;
         setTimeout(() => {

@@ -6,8 +6,8 @@
       "name": "qwee",
       "createdDateUnix": "1515648942.466",
       "id": 1,
-      "lat": 52.02883848153627,
-      "lng": 8.525390625
+      "lat": 54.77534585936447,
+      "lng": 45.5877685546875
     },
     {
       "email": "admin@ad.ad3",
@@ -21,25 +21,23 @@
       "password": "76d80224611fc919a5d54f0ff9fba446",
       "name": "qwe",
       "createdDateUnix": "1515663671.384",
-      "id": 3,
-      "lat": 52.42922227795514,
-      "lng": 6.492919921875
+      "id": 3
     },
     {
       "email": "admin@ad.ad4",
       "password": "76d80224611fc919a5d54f0ff9fba446",
       "name": "qwe4",
       "createdDateUnix": "1515663755.069",
-      "id": 4,
-      "lat": 51.67255514839674,
-      "lng": 7.7947998046875
+      "id": 4
     },
     {
       "email": "admin@ad.ad5",
       "password": "76d80224611fc919a5d54f0ff9fba446",
       "name": "555",
       "createdDateUnix": "1515663776.981",
-      "id": 5
+      "id": 5,
+      "lat": 54.173485899999996,
+      "lng": 45.123975099999996
     },
     {
       "email": "admin@ad.ad6",
@@ -58,6 +56,15 @@
       "id": 7,
       "lat": 18.145851771694467,
       "lng": -12.83203125
+    },
+    {
+      "email": "admin@ad.ad9",
+      "password": "76d80224611fc919a5d54f0ff9fba446",
+      "name": "9999",
+      "createdDateUnix": "1515751262.971",
+      "id": 8,
+      "lat": 54.13347814286039,
+      "lng": 42.154541015625
     }
   ]
 }

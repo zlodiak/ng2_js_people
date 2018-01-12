@@ -21,6 +21,7 @@ import { User } from './interfaces/user';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  private isSelectedAutoTarget: boolean = false;
   private lat: number;
   private lng: number;
   private users: User[] = [];
@@ -53,15 +54,25 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private clickRegistration(): void {
     this.registrationDialogRef = this.dialog.open(RegistrationComponent, {});
-    this.subAfterClosed = this.registrationDialogRef.afterClosed().subscribe(() => {
+    this.subAfterClosed = this.registrationDialogRef.afterClosed().subscribe((resp) => {
       this.ngOnInit();
+      if(resp === 'okRegistration') {
+        this.snackBar.open('Вы успешно зарегистрировались в системе', 'OK', {
+          duration: Config.timePeriod
+        });
+      }
     });
   }
 
   private clickLogin(): void {
     this.loginDialogRef = this.dialog.open(LoginComponent, {});
-    this.subAfterClosed = this.loginDialogRef.afterClosed().subscribe(() => {
+    this.subAfterClosed = this.loginDialogRef.afterClosed().subscribe((resp) => {
       this.ngOnInit();
+      if(resp === 'okLogin') {
+        this.snackBar.open('Вы успешно авторизовались в системе', 'OK', {
+          duration: Config.timePeriod
+        });
+      }
     });
   }
 
@@ -74,6 +85,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private logout(): void {
     this.globalVarsService.setVar('authorizedUser', undefined);
     this.ngOnInit();
+    this.snackBar.open('Вы вышли из системы', 'OK', {
+      duration: Config.timePeriod
+    });
   }
 
   private setMarker(ev): void {
@@ -83,6 +97,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this.authorizedUser['lng'] = ev.coords.lng;
       this.subSetUser = this.usersService.setUser(this.authorizedUser).subscribe((user) => {
         this.getUsers();
+        this.snackBar.open('Маркер поставлен', 'OK', {
+          duration: Config.timePeriod
+        });
       });
     }
   }
@@ -95,9 +112,14 @@ export class AppComponent implements OnInit, OnDestroy {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
 
-        if(this.authorizedUser && (!this.authorizedUser['lat'] || !this.authorizedUser['lng'])) {
-          this.autoTargetingDialogRef = this.dialog.open(AutoTargetComponent, {});
+        if(!this.isSelectedAutoTarget && this.authorizedUser && (!this.authorizedUser['lat'] || !this.authorizedUser['lng'])) {
+          this.autoTargetingDialogRef = this.dialog.open(AutoTargetComponent, {data: {
+            lat: this.lat,
+            lng: this.lng
+          }});
+
           this.subAfterClosed = this.autoTargetingDialogRef.afterClosed().subscribe(() => {
+            this.isSelectedAutoTarget = true;
             this.ngOnInit();
           });
         }

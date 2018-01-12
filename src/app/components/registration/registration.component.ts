@@ -54,7 +54,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
     this.subCreateUser = this.usersService.createUser(newUser).subscribe((user) => {
       this.globalVarsService.setVar('authorizedUser', user);
-      this.dialogRef.close();
+      this.dialogRef.close('okRegistration');
     });
   }
 

@@ -1,17 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Subscription } from 'rxjs/Subscription';
 
+import { UsersService } from '../../services/users-service.service';
+import { GlobalVarsService } from '../../services/global-vars.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-auto-target',
   templateUrl: './auto-target.component.html',
   styleUrls: ['./auto-target.component.scss']
 })
-export class AutoTargetComponent implements OnInit {
+export class AutoTargetComponent implements OnInit, OnDestroy {
 
-  constructor(private dialogRef: MatDialogRef<AutoTargetComponent>) { }
+  private authorizedUser: User | boolean;
+  private subSetUser: Subscription;
+
+  constructor(private dialogRef: MatDialogRef<AutoTargetComponent>,
+              private usersService: UsersService,
+              private globalVarsService: GlobalVarsService,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    this.authorizedUser = this.globalVarsService.getAuthorizedUser();
+  }
+
+  ngOnDestroy() {
+    if(this.subSetUser) { this.subSetUser.unsubscribe(); }
   }
 
   private clickCancel() {
@@ -19,19 +35,11 @@ export class AutoTargetComponent implements OnInit {
   }
 
   private clickSubmit(): void {
-    /*this.subGetUser = this.usersService.getUserByEmail(this.form.value.email).subscribe((user) => {
-      const passwordHash = this.hashService.generate(this.form.value.password);
-
-      if(user && passwordHash === user.password) {
-        this.globalVarsService.setVar('authorizedUser', user);
-        this.dialogRef.close();
-      } else {
-        this.isShowError = true;
-        setTimeout(() => {
-          this.isShowError = false;
-        }, Config.timePeriod);
-      }
-    });*/
+    this.authorizedUser['lat'] = this.data['lat'];
+    this.authorizedUser['lng'] = this.data['lng'];
+    this.usersService.setUser(this.authorizedUser).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
 }
