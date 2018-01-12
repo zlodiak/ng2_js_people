@@ -21,6 +21,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { AutoTargetComponent } from './components/auto-target/auto-target.component';
 import { InfoComponent } from './components/info/info.component';
+import { AnketaComponent } from './components/anketa/anketa.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { InfoComponent } from './components/info/info.component';
     RegistrationComponent,
     LoginComponent,
     AutoTargetComponent,
-    InfoComponent
+    InfoComponent,
+    AnketaComponent
   ],
   imports: [
     MatSnackBarModule,
@@ -52,6 +54,7 @@ import { InfoComponent } from './components/info/info.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    AnketaComponent,
     InfoComponent,
     AutoTargetComponent,
     LoginComponent,

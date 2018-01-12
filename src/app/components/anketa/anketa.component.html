@@ -1,0 +1,25 @@
+<div class="wrap">
+  <div class="line" *ngIf="selectedUser?.photo">
+    <img class="photo" [src]="selectedUser?.photo" alt="">
+  </div>
+
+  <div class="line">
+    <div class="label">Имя</div>
+    <div class="body">{{ selectedUser?.name }}</div>
+  </div>
+
+  <div class="line" *ngIf="selectedUser?.mobile">
+    <div class="label">Телефон</div>
+    <div class="body">{{ selectedUser?.mobile }}</div>
+  </div>
+
+  <div class="line" *ngIf="selectedUser?.about">
+    <div class="label block">Обо мне</div>
+    <div class="body">{{ selectedUser?.about }}</div>
+  </div>
+
+  <div class="line" *ngIf="selectedUser?.skills">
+    <div class="label block">С какими технологиями работаю</div>
+    <div class="body">{{ selectedUser?.skills }}</div>
+  </div>
+</div>

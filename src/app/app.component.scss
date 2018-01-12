@@ -3,3 +3,44 @@
 .is-marker-mode{
   background: $accent-color;
 }
+
+.balloon{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+
+  .left{
+    width: 60px;
+
+    .in{
+      margin-right: $basic-measure / 2;
+
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  .right{
+    width: calc(100% - 60px);
+
+    .inner{
+
+      >div{
+        padding-bottom: $basic-measure / 4;
+      }
+
+      .name{
+
+        font-weight: bold;
+      }
+
+      .mobile{
+
+      }
+    }
+  }
+}

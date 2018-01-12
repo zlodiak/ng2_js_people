@@ -9,6 +9,7 @@ import { UsersService } from './services/users-service.service';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { InfoComponent } from './components/info/info.component';
+import { AnketaComponent } from './components/anketa/anketa.component';
 import { AutoTargetComponent } from './components/auto-target/auto-target.component';
 
 import { Config } from './config';
@@ -28,11 +29,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private users: User[] = [];
   private markerMode: boolean = false;
   private authorizedUser: User | boolean;
+  private target = '/assets/imgs/target.png';
 
   private registrationDialogRef: MatDialogRef<RegistrationComponent>;
   private loginDialogRef: MatDialogRef<LoginComponent>;
   private infoDialogRef: MatDialogRef<InfoComponent>;
   private autoTargetingDialogRef: MatDialogRef<AutoTargetComponent>;
+  private anketaDialogRef: MatDialogRef<AnketaComponent>;
 
   private subGetUsers: Subscription;
   private subSetUser: Subscription;
@@ -91,9 +94,10 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getUsers(): void {
-    this.subGetUsers = this.usersService.getUsers().subscribe((users) => {
-      this.users = users;
+  private openAnketa(userEmail): void {
+    this.anketaDialogRef = this.dialog.open(AnketaComponent, {
+      width: '400px',
+      data: {userEmail: userEmail}
     });
   }
 
@@ -102,6 +106,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.ngOnInit();
     this.snackBar.open('Вы вышли из системы', 'OK', {
       duration: Config.timePeriod
+    });
+  }
+
+  private getUsers(): void {
+    this.subGetUsers = this.usersService.getUsers().subscribe((users) => {
+      this.users = users;
     });
   }
 
