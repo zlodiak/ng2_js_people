@@ -44,6 +44,7 @@ export class InfoComponent implements OnInit {
   }
 
   private clickCancel() {
+    console.log(this.form);
     this.dialogRef.close();
   }
 
@@ -60,15 +61,18 @@ export class InfoComponent implements OnInit {
   }
 
   private uploadPhoto(ev): void {
-    const file:File = ev.target.files[0];
-    const myReader:FileReader = new FileReader();
+    if(ev.target.files[0].size <= 17408) {
+      const file:File = ev.target.files[0];
+      const myReader:FileReader = new FileReader();
+      myReader.onloadend = (e) => {
+        this.photoBase64 = myReader.result;
+        this.authorizedUser['photo'] = this.photoBase64;
+      };
+      myReader.readAsDataURL(file);
+    } else {
+      alert('Ошибка! размер файла не должен превышать 17Kb');
+    }
 
-    myReader.onloadend = (e) => {
-      this.photoBase64 = myReader.result;
-      this.authorizedUser['photo'] = this.photoBase64;
-    };
-
-    myReader.readAsDataURL(file);
   }
 
   private deletePhoto() {

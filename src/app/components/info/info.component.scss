@@ -34,6 +34,11 @@
     }
   }
 
+  .error{
+    color: $accent-color;
+    display: block;
+  }
+
   .photo{
     display: inline-block;
     max-width: 240px;

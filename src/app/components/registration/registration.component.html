@@ -6,6 +6,11 @@
         <mat-form-field class="line-inner">
           <input class="email" id="email" placeholder="email" type="email" formControlName="email" matInput>
         </mat-form-field>
+
+        <span class="error" *ngIf="form.get('email').invalid && form.get('email').touched">
+          <span *ngIf="form.get('email')['errors']['required']">email не может быть пустым</span>
+          <span *ngIf="form.get('email')['errors']['haveSpaces']">email не может состоять из пробелов</span>
+        </span>
       </div>
 
       <div class="line">

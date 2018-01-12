@@ -15,6 +15,10 @@
       <mat-form-field class="line-inner">
         <input class="name" id="name" placeholder="Имя" type="text" formControlName="name" matInput>
       </mat-form-field>
+      <span class="error" *ngIf="form.get('name').invalid">
+			  <span *ngIf="form.get('name')['errors']['required']">Имя не может быть пустым</span>
+			  <span *ngIf="form.get('name')['errors']['haveSpaces']">Имя не может состоять из пробелов</span>
+		  </span>
     </div>
 
     <div class="line">
@@ -31,13 +35,13 @@
 
     <div class="line">
       <mat-form-field class="line-inner long">
-        <textarea class="about" matInput rows="2" cols="40" placeholder="Инфо обо мне" formControlName="about"></textarea>
+        <textarea class="about" matInput rows="1" cols="40" placeholder="Инфо обо мне" formControlName="about"></textarea>
       </mat-form-field>
     </div>
 
     <div class="line">
       <mat-form-field class="line-inner long">
-        <textarea class="skills" matInput rows="2" cols="40" placeholder="С какими технологиями работаю" formControlName="skills"></textarea>
+        <textarea class="skills" matInput rows="1" cols="40" placeholder="С какими технологиями работаю" formControlName="skills"></textarea>
       </mat-form-field>
     </div>
   </mat-dialog-content>
