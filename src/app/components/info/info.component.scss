@@ -6,9 +6,13 @@
   min-height: $basic-measure;
   position: relative;
 
-  mat-form-field{
+  .line-inner{
     width: 100%;
     max-width: 300px;
+
+    &.long{
+      max-width: 100%;
+    }
   }
 }
 

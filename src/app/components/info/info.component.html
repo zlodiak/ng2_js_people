@@ -4,13 +4,31 @@
   <mat-dialog-content>
     <div class="line">
       <mat-form-field class="line-inner">
-        <input class="mobile" id="mobile" placeholder="Номер мобильного телефона" type="tel" formControlName="mobile" matInput>
+        <input class="name" id="name" placeholder="Имя" type="text" formControlName="name" matInput>
       </mat-form-field>
     </div>
 
     <div class="line">
       <mat-form-field class="line-inner">
-        <textarea class="about" matInput rows="5" cols="40" placeholder="Инфо обо мне" formControlName="about"></textarea>
+        <input class="city" id="city" placeholder="Город" type="text" formControlName="city" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="line">
+      <mat-form-field class="line-inner">
+        <input class="mobile" id="mobile" placeholder="Номер мобильного телефона" type="tel" formControlName="mobile" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="line">
+      <mat-form-field class="line-inner long">
+        <textarea class="about" matInput rows="2" cols="40" placeholder="Инфо обо мне" formControlName="about"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="line">
+      <mat-form-field class="line-inner long">
+        <textarea class="skills" matInput rows="2" cols="40" placeholder="С какими технологиями работаю" formControlName="skills"></textarea>
       </mat-form-field>
     </div>
   </mat-dialog-content>

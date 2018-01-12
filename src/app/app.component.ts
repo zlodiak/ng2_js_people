@@ -8,6 +8,7 @@ import { UsersService } from './services/users-service.service';
 
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { InfoComponent } from './components/info/info.component';
 import { AutoTargetComponent } from './components/auto-target/auto-target.component';
 
 import { Config } from './config';
@@ -27,8 +28,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private users: User[] = [];
   private markerMode: boolean = false;
   private authorizedUser: User | boolean;
+
   private registrationDialogRef: MatDialogRef<RegistrationComponent>;
   private loginDialogRef: MatDialogRef<LoginComponent>;
+  private infoDialogRef: MatDialogRef<LoginComponent>;
   private autoTargetingDialogRef: MatDialogRef<AutoTargetComponent>;
 
   private subGetUsers: Subscription;
@@ -50,6 +53,18 @@ export class AppComponent implements OnInit, OnDestroy {
     if(this.subGetUsers) { this.subGetUsers.unsubscribe(); }
     if(this.subSetUser) { this.subSetUser.unsubscribe(); }
     if(this.subAfterClosed) { this.subAfterClosed.unsubscribe(); }
+  }
+
+  private clickInfo(): void {
+    this.infoDialogRef = this.dialog.open(InfoComponent, {width: '500px'});
+    this.subAfterClosed = this.infoDialogRef.afterClosed().subscribe((resp) => {
+      this.ngOnInit();
+      if(resp === 'saveInfo') {
+        this.snackBar.open('Данные анкеты сохранены', 'OK', {
+          duration: Config.timePeriod
+        });
+      }
+    })
   }
 
   private clickRegistration(): void {

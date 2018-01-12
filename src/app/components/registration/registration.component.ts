@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       'email':      new FormControl('', [Validators.required, Validators.email], this.forbiddenEmail.bind(this)),
       'password':   new FormControl('', [Validators.required, Validators.minLength(3)]),
       'password2':  new FormControl('', [Validators.required, Validators.minLength(3)], this.comparePasswords.bind(this)),
-      'name':       new FormControl('', [Validators.required]),
+      'name':       new FormControl('', [Validators.required, Validators.minLength(2)]),
       'agree':      new FormControl(false, [Validators.requiredTrue])
     });
   }

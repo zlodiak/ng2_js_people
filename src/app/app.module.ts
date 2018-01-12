@@ -19,7 +19,6 @@ import { UsersService } from './services/users-service.service';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
-import { ComponentsComponent } from './components/components.component';
 import { AutoTargetComponent } from './components/auto-target/auto-target.component';
 import { InfoComponent } from './components/info/info.component';
 
@@ -29,7 +28,6 @@ import { InfoComponent } from './components/info/info.component';
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    ComponentsComponent,
     AutoTargetComponent,
     InfoComponent
   ],
@@ -54,6 +52,7 @@ import { InfoComponent } from './components/info/info.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    InfoComponent,
     AutoTargetComponent,
     LoginComponent,
     RegistrationComponent
