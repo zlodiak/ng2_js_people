@@ -3,6 +3,15 @@
 <form [formGroup]="form">
   <mat-dialog-content>
     <div class="line">
+      <input type="file" class="photo" id="photo" placeholder="Фото" (change)="uploadPhoto($event)" #file>
+
+      <div class="line-inner" *ngIf="authorizedUser?.photo">
+        <img [src]="authorizedUser?.photo" alt="" class="photo">
+      </div>
+      <div class="delete" (click)="deletePhoto(); file.value = ''" *ngIf="photoBase64 || authorizedUser?.photo">Удалить</div>
+    </div>
+
+    <div class="line">
       <mat-form-field class="line-inner">
         <input class="name" id="name" placeholder="Имя" type="text" formControlName="name" matInput>
       </mat-form-field>

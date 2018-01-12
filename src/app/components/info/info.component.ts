@@ -16,6 +16,7 @@ export class InfoComponent implements OnInit {
 
   private form: FormGroup;
   private authorizedUser: User | boolean;
+  private photoBase64: string;
 
   constructor(private dialogRef: MatDialogRef<InfoComponent>,
               private usersService: UsersService,
@@ -52,8 +53,28 @@ export class InfoComponent implements OnInit {
     this.authorizedUser['mobile'] = this.form.value.mobile;
     this.authorizedUser['city'] = this.form.value.city;
     this.authorizedUser['skills'] = this.form.value.skills;
+    if(this.photoBase64) { this.authorizedUser['photo'] = this.photoBase64; }
     this.usersService.setUser(this.authorizedUser).subscribe(() => {
       this.dialogRef.close('saveInfo');
+    });
+  }
+
+  private uploadPhoto(ev): void {
+    const file:File = ev.target.files[0];
+    const myReader:FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.photoBase64 = myReader.result;
+      this.authorizedUser['photo'] = this.photoBase64;
+    };
+
+    myReader.readAsDataURL(file);
+  }
+
+  private deletePhoto() {
+    this.authorizedUser['photo'] = undefined;
+    this.usersService.setUser(this.authorizedUser).subscribe(() => {
+      this.photoBase64 = undefined;
     });
   }
 

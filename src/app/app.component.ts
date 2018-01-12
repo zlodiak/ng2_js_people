@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private registrationDialogRef: MatDialogRef<RegistrationComponent>;
   private loginDialogRef: MatDialogRef<LoginComponent>;
-  private infoDialogRef: MatDialogRef<LoginComponent>;
+  private infoDialogRef: MatDialogRef<InfoComponent>;
   private autoTargetingDialogRef: MatDialogRef<AutoTargetComponent>;
 
   private subGetUsers: Subscription;

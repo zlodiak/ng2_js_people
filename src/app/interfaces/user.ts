@@ -7,7 +7,7 @@ export interface User {
   about?: string;
   skills?: string;
   city?: string;
-  icon?: string;
+  photo?: string;
   createdDateUnix?: string;
   lat?: number;
   lng?: number;

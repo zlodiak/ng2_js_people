@@ -5,6 +5,11 @@
   width: 100%;
   min-height: $basic-measure;
   position: relative;
+  outline: none;
+
+  *{
+    outline: none;
+  }
 
   .line-inner{
     width: 100%;
@@ -13,6 +18,12 @@
     &.long{
       max-width: 100%;
     }
+  }
+
+  .photo{
+    display: inline-block;
+    max-width: 240px;
+    padding-bottom: $basic-measure;
   }
 }
 
