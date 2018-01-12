@@ -3,7 +3,9 @@ export interface User {
   password: string;
   name: string;
   email: string;
-  info?: string;
+  mobile?: string;
+  about?: string;
+  skills?: string;
   city?: string;
   icon?: string;
   createdDateUnix?: string;

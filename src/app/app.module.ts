@@ -21,6 +21,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { ComponentsComponent } from './components/components.component';
 import { AutoTargetComponent } from './components/auto-target/auto-target.component';
+import { InfoComponent } from './components/info/info.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AutoTargetComponent } from './components/auto-target/auto-target.compon
     RegistrationComponent,
     LoginComponent,
     ComponentsComponent,
-    AutoTargetComponent
+    AutoTargetComponent,
+    InfoComponent
   ],
   imports: [
     MatSnackBarModule,

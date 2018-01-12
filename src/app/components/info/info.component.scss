@@ -1,0 +1,14 @@
+@import "~vars.scss";
+
+.line{
+  padding-bottom: $basic-measure;
+  width: 100%;
+  min-height: $basic-measure;
+  position: relative;
+
+  mat-form-field{
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
